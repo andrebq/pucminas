@@ -1,4 +1,7 @@
 # coding=utf-8
+
+from matrix import Matrix
+
 class Item:
     def __init__(self, value=0, weight=0):
         self.weight = weight
@@ -6,18 +9,6 @@ class Item:
     
     def __str__(self):
         return "{}Kg / {}$".format(self.weight, self.value)
-
-class Matrix:
-    def __init__(self):
-        self.items = {}
-    def put(self, x, y, value):
-        self.items[(x,y)] = value
-
-    def get(self, x, y):
-        try:
-            return self.items[(x,y)]
-        except KeyError:
-            return 0
 
 def make_matrix(m=Matrix(), items=[], max_weight=0):
     items = sorted(items, key=lambda i: i.weight)
