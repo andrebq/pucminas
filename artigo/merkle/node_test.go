@@ -20,7 +20,7 @@ func TestNodeHash(t *testing.T) {
 	if !ok {
 		t.Fatal("value should exist")
 	}
-	if !reflect.DeepEqual(value, []byte("world")) {
+	if !reflect.DeepEqual(value.Bytes(nil), []byte("world")) {
 		t.Fatal("invalid value, should be world")
 	}
 
@@ -32,6 +32,24 @@ func TestNodeHash(t *testing.T) {
 	if withValue.Hash() == node.Hash() {
 		t.Fatal("something really bad happened")
 	}
+}
 
-	println("withValue: ", withValue.Export().String())
+func TestNodeWalk(t *testing.T) {
+	node := merkle.NewNode()
+	withValue := node.Add([]byte("hello"), []byte("world"))
+
+	paths := make(map[string]*merkle.Node)
+
+	withValue.Walk(func(p merkle.Bytes, n *merkle.Node) (bool, error) {
+		paths[p.String()] = n
+		return true, nil
+	})
+
+	for k, v := range paths {
+		t.Logf("%v: %v", k, v.Export())
+	}
+
+	if len(paths) != 6 {
+		t.Fatal("should have 5 items afther the final scan")
+	}
 }
