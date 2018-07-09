@@ -5,11 +5,15 @@ type (
 	Device struct {
 		// ID holds the xid ID associated with a given device
 		ID string
+
 		// PublicName used to identify the device
 		PublicName string
 
 		// PublicKey used to identify this device
 		PublicKey PublicKey
+
+		// LastClock holds the last clock value for this device
+		LastClock Clock
 	}
 
 	// Sensor is a CRDT type representing a sensor. Since this is a CRDT

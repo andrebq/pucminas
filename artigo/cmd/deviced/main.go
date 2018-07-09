@@ -7,6 +7,7 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/andrebq/pucminas/artigo/crdt"
 	"github.com/andrebq/pucminas/artigo/flags"
+	"github.com/andrebq/pucminas/artigo/stopwatch"
 )
 
 func main() {
@@ -33,17 +34,15 @@ func main() {
 		DeviceID: signer.Identity().SignerID,
 	}
 
-	start := time.Now()
+	s := stopwatch.New(flags.Duration())
 	var i int
-	for {
+	logrus.Info("starting")
+	for !s.Stop() {
 		_, err := crdt.EncodeAndSign(reading, signer)
 		if err != nil {
 			logrus.WithError(err).Fatal("unable to perform reading")
 		}
 		i++
-		if time.Now().Sub(start) > flags.Duration() {
-			break
-		}
 	}
 
 	logrus.WithField("readings", i).Info()

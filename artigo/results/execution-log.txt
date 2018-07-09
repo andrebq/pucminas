@@ -1,0 +1,69 @@
+pi@raspberrypi:~/rpi $ ./run_all_tests_arm.sh 
+merkled -duration 30
+INFO[2018-07-08T15:28:33Z] starting                                     
+INFO[2018-07-08T15:29:03Z]                                               nodes=11601
+INFO[2018-07-08T15:29:03Z] second_loop                                  
+INFO[2018-07-08T15:29:35Z]                                               diffs=14 nodes=11601
+deviced -duration 30
+INFO[2018-07-08T15:29:35Z] starting                                     
+INFO[2018-07-08T15:30:05Z]                                               readings=5289
+acunitd -duration 30 -nodes 3
+INFO[2018-07-08T15:30:05Z] starting                                     
+INFO[2018-07-08T15:30:35Z]                                               iterations=421006
+INFO[2018-07-08T15:30:35Z] second_loop                                  
+INFO[2018-07-08T15:31:05Z]                                               queries=6447930
+acunitd -duration 30 -nodes 15
+INFO[2018-07-08T15:31:05Z] starting                                     
+INFO[2018-07-08T15:31:35Z]                                               iterations=437576
+INFO[2018-07-08T15:31:35Z] second_loop                                  
+INFO[2018-07-08T15:32:05Z]                                               queries=6684105
+acunitd -duration 30 -nodes 100
+INFO[2018-07-08T15:32:05Z] starting                                     
+INFO[2018-07-08T15:32:35Z]                                               iterations=459200
+INFO[2018-07-08T15:32:35Z] second_loop                                  
+INFO[2018-07-08T15:33:05Z]                                               queries=6950470
+pi@raspberrypi:~/rpi $ sysbench --test=cpu --cpu-max-prime=20000 run
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 1
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 20000
+
+
+Test execution summary:
+    total time:                          890.3155s
+    total number of events:              10000
+    total time taken by event execution: 890.2560
+    per-request statistics:
+         min:                                 86.98ms
+         avg:                                 89.03ms
+         max:                                241.43ms
+         approx.  95 percentile:              96.48ms
+
+Threads fairness:
+    events (avg/stddev):           10000.0000/0.00
+    execution time (avg/stddev):   890.2560/0.00
+
+pi@raspberrypi:~/rpi $ 
+
+
+pi@raspberrypi:~/rpi $ ./run_idle.sh 
+idle - Sun  8 Jul 23:30:15 UTC 2018
+primes - Sun  8 Jul 23:30:45 UTC 2018
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 1
+
+Doing CPU performance benchmark
+
+Threads started!
+done - Sun  8 Jul 23:31:15 UTC 2018
+./run_idle.sh: line 13:  1354 Terminated              sysbench --test=cpu --cpu-max-prime=20000 run
+pi@raspberrypi:~/rpi $ 

@@ -1,4 +1,6 @@
 vendor
 cmd/deviced/deviced
 cmd/merkled/merkled
+cmd/acunitd/acunitd
+cmd/extractor/extractor
 dist
