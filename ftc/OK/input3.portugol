@@ -1,0 +1,32 @@
+		inicio teste;
+
+		idade, saida : real; salario : inteiro;
+		
+		letra : caracter
+		
+		a := +4;
+		b := a;
+		
+		se ( idade  >= -9) entao inicio
+		 enquanto (b = +10) and (c <> -50)
+		 faca inicio
+		
+		   leia(idade);
+		   escreva(salario)
+		 fim
+		fim;
+		
+		se ( idade  >= -9) entao inicio
+		 enquanto (b = +10) and (c <> -50)
+		 faca inicio
+		
+		   leia(idade);
+		   escreva(salario)
+		 fim
+		fim;
+
+        se a,b,c,d entao inicio escreva(10) fim senao inicio leia(a) fim;
+
+		leia (saida)
+		
+		fim

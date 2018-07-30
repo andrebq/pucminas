@@ -77,6 +77,10 @@ func (p pos) back(cols int) pos {
 	}
 }
 
+func (p pos) String() string {
+	return fmt.Sprintf(" linha: %v / coluna: %v", p.line, p.col)
+}
+
 func (e *emitter) emit(kind string, p *reader) {
 	e.tokens = append(e.tokens, token{
 		kind:  kind,
@@ -149,7 +153,7 @@ func (r *reader) pos() pos {
 }
 
 func isWhitespace(r rune) bool {
-	return r == ' ' || r == '\n' || r == '\r'
+	return r == ' ' || r == '\n' || r == '\r' || r == '\t'
 }
 
 func isLetra(r rune) bool {
@@ -177,4 +181,16 @@ func dontPanic(fn func()) (err error) {
 	}()
 	fn()
 	return err
+}
+
+func (t tokens) String() string {
+	sz := len(t)
+	switch sz {
+	case 0:
+		return "[]"
+	case 1, 2:
+	default:
+		sz = 2
+	}
+	return fmt.Sprintf("%v", []token(t[:sz]))
 }
